@@ -13,86 +13,86 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Центрирование по горизонтали */
             position: relative;
         }
 
         .menu-button {
             position: absolute;
             cursor: pointer;
-            border-radius: 30%; /* Удвоено */
+            border-radius: 20%;
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2); /* Удвоено */
+            box-shadow: 6.67px 6.67px 13.33px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s, box-shadow 0.2s;
-            width: 50vw; /* Удвоено */
-            height: 50vw; /* Удвоено */
+            width: 33.33vw;
+            height: 33.33vw;
             overflow: hidden;
             z-index: 1;
         }
 
         .menu-button:hover {
             transform: scale(1.05);
-            box-shadow: 14px 14px 24px rgba(0, 0, 0, 0.25); /* Удвоено */
+            box-shadow: 9.33px 9.33px 16px rgba(0, 0, 0, 0.25);
         }
 
         .menu-button:active {
             transform: scale(0.95);
-            box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.15); /* Удвоено */
+            box-shadow: 4px 4px 10.67px rgba(0, 0, 0, 0.15);
         }
 
         .home-button {
-            position: absolute;
-            top: 200vw; /* Удвоено */
-            left: 76vw; /* Удвоено */
-            width: 40vw; /* Удвоено */
-            height: 14vw; /* Удвоено */
-            border-radius: 30%; /* Удвоено */
-            border: none;
-            cursor: pointer;
-            overflow: hidden;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0); /* Удвоено */
-            background-color: transparent;
-            z-index: 1;
-        }
+    position: absolute;
+    top: 133.33vw; /* Остается без изменений, так как изменяется размер относительно центра */
+    left: 32.5vw; /* Изменено для центрирования после увеличения */
+    width: 40vw; /* Увеличено в 1.5 раза (26.67vw * 1.5 ≈ 40vw) */
+    height: 14vw; /* Увеличено в 1.5 раза (9.33vw * 1.5 ≈ 14vw) */
+    border-radius: 20%;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 6.67px 6.67px 13.33px rgba(0, 0, 0, 0);
+    background-color: transparent;
+    z-index: 1;
+}
 
         #letters-button {
-            top: 26vw; /* Удвоено */
-            left: 40vw; /* Удвоено */
+            top: 17.33vw;
+            left: 13.67vw; /* Изменено для центрирования */
             background-image: url('MainMenu/Letters.png');
         }
 
         #top100-button {
-            top: 26vw; /* Удвоено */
-            left: 100vw; /* Удвоено */
+            top: 17.33vw;
+            left: 53vw; /* Изменено для центрирования */
             background-image: url('MainMenu/Top100.png');
         }
 
         #thousand-button {
-            top: 84vw; /* Удвоено */
-            left: 40vw; /* Удвоено */
+            top: 56vw;
+            left: 13.67vw; /* Изменено для центрирования */
             background-image: url('MainMenu/1000.png');
         }
 
         #phrases-button {
-            top: 84vw; /* Удвоено */
-            left: 100vw; /* Удвоено */
+            top: 56vw;
+            left: 53vw; /* Изменено для центрирования */
             background-image: url('MainMenu/Phrases.png');
         }
 
         #prayers-button {
-            top: 142vw; /* Удвоено */
-            left: 40vw; /* Удвоено */
+            top: 94.67vw;
+            left: 13.67vw; /* Изменено для центрирования */
             background-image: url('MainMenu/Prayers.png');
         }
 
         #songs-button {
-            top: 142vw; /* Удвоено */
-            left: 100vw; /* Удвоено */
+            top: 94.67vw;
+            left: 53vw; /* Изменено для центрирования */
             background-image: url('MainMenu/Songs.png');
         }
     </style>
