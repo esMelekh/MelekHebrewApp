@@ -1,104 +1,205 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Menu</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            background: url('MainMenu/Background.png') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
 
-        .menu-button {
-            position: absolute;
-            cursor: pointer;
-            border-radius: 10%;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 25vw;
-            height: 25vw;
-            overflow: hidden;
-            z-index: 1;
-        }
+<meta charset="UTF-8">
 
-        .menu-button:hover {
-            transform: scale(1.05);
-            box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.25);
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .menu-button:active {
-            transform: scale(0.95);
-            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
-        }
+<title>Main Menu</title>
 
-        .home-button {
-            position: absolute;
-            top: 100vw; /* Уменьшено, чтобы избежать выхода за пределы экрана */
-            left: 35vw;
-            width: 30vw;
-            height: 6vw;
-            border-radius: 10%;
-            cursor: pointer;
-            background-size: cover; /* Растягиваем изображение на всю кнопку */
-            background-repeat: no-repeat;
-            background-position: center;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-            background-color: transparent;
-            z-index: 2;
-        }
+<style>
 
-        /* ... (остальные стили позиционирования кнопок остаются без изменений) */
-        #letters-button {
-            top: 13vw;
-            left: 20vw;
-            background-image: url('MainMenu/Letters.png');
-        }
-        #top100-button {
-            top: 13vw;
-            left: 50vw;
-            background-image: url('MainMenu/Top100.png');
-        }
-        #thousand-button {
-            top: 42vw;
-            left: 20vw;
-            background-image: url('MainMenu/1000.png');
-        }
-         #phrases-button {
-            top: 42vw;
-            left: 50vw;
-            background-image: url('MainMenu/Phrases.png');
-        }
-        #prayers-button {
-            top: 71vw;
-            left: 20vw;
-            background-image: url('MainMenu/Prayers.png');
-        }
-        #songs-button {
-            top: 71vw;
-            left: 50vw;
-            background-image: url('MainMenu/Songs.png');
-        }
-    </style>
+body {
+
+font-family: sans-serif;
+
+margin: 0;
+
+background: url('MainMenu/Background.png') no-repeat center center fixed;
+
+background-size: cover;
+
+min-height: 100vh;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+position: relative;
+
+}
+
+
+
+.menu-button {
+
+position: absolute;
+
+cursor: pointer;
+
+border-radius: 15%;
+
+background-size: 100% 100%;
+
+background-repeat: no-repeat;
+
+background-position: center;
+
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+transition: transform 0.2s, box-shadow 0.2s;
+
+width: 25vw;
+
+height: 25vw;
+
+overflow: hidden;
+
+z-index: 1;
+
+}
+
+
+
+.menu-button:hover {
+
+transform: scale(1.05);
+
+box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.25);
+
+}
+
+
+
+.menu-button:active {
+
+transform: scale(0.95);
+
+box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+
+
+.home-button {
+
+position: absolute;
+
+top: 100vw; 
+
+left: 38vw;
+
+width: 20vw;
+
+height: 7vw;
+
+border-radius: 15%;
+
+border: none;
+
+cursor: pointer;
+
+overflow: hidden;
+
+background-size: cover; 
+
+background-repeat: no-repeat;
+
+background-position: center;
+
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0);
+
+background-color: transparent;
+
+z-index: 1;
+
+}
+
+#letters-button {
+
+top: 13vw;
+
+left: 20vw;
+
+background-image: url('MainMenu/Letters.png');
+
+}
+
+#top100-button {
+
+top: 13vw;
+
+left: 50vw;
+
+background-image: url('MainMenu/Top100.png');
+
+}
+
+#thousand-button {
+
+top: 42vw;
+
+left: 20vw;
+
+background-image: url('MainMenu/1000.png');
+
+}
+
+#phrases-button {
+
+top: 42vw;
+
+left: 50vw;
+
+background-image: url('MainMenu/Phrases.png');
+
+}
+
+#prayers-button {
+
+top: 71vw;
+
+left: 20vw;
+
+background-image: url('MainMenu/Prayers.png');
+
+}
+
+#songs-button {
+
+top: 71vw;
+
+left: 50vw;
+
+background-image: url('MainMenu/Songs.png');
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <div class="menu-button" id="letters-button" onclick="alert('Letters section coming soon!')"></div>
-    <div class="menu-button" id="top100-button" onclick="window.location.href='top100.html'"></div>
-    <div class="menu-button" id="thousand-button" onclick="alert('1000 section coming soon!')"></div>
-    <div class="menu-button" id="phrases-button" onclick="alert('Phrases section coming soon!')"></div>
-    <div class="menu-button" id="prayers-button" onclick="alert('Prayers section coming soon!')"></div>
-    <div class="menu-button" id="songs-button" onclick="alert('Songs section coming soon!')"></div>
-    <button class="menu-button home-button" onclick="alert('Home button clicked!')" style="background-image: url('MainMenu/Home.png');"></button>
+
+<div class="menu-button" id="letters-button" onclick="alert('Letters section coming soon!')"></div>
+
+<div class="menu-button" id="top100-button" onclick="window.location.href='top100.html'"></div>
+
+<div class="menu-button" id="thousand-button" onclick="alert('1000 section coming soon!')"></div>
+
+<div class="menu-button" id="phrases-button" onclick="alert('Phrases section coming soon!')"></div>
+
+<div class="menu-button" id="prayers-button" onclick="alert('Prayers section coming soon!')"></div>
+
+<div class="menu-button" id="songs-button" onclick="alert('Songs section coming soon!')"></div>
+
+<button class="menu-button home-button" onclick="alert('Home button clicked!')" style="background-image: url('MainMenu/Home.png');"></button>
+
 </body>
+
 </html>
