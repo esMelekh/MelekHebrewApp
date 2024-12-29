@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivrit Words App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .image-container {
+            margin: 20px auto;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            cursor: pointer;
+        }
+        .word {
+            font-size: 24px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .transcription {
+            font-size: 18px;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learn Hebrew Words</h1>
+    <div class="image-container" id="imageContainer">
+        <img src="" alt="Word Image" id="wordImage">
+    </div>
+    <div class="word" id="wordText">Tap on the image to reveal the word!</div>
+    <div class="transcription" id="transcriptionText"></div>
+    <button id="nextWordBtn">Next Word</button>
+
+    <script>
+        const wordsData = [
+            { image: "Images/air.png", word: "אֲוִיר (Avir) - Воздух", transcription: "а-ВИР" },
+            { image: "Images/bad.png", word: "רַע (Ra) - Плохой", transcription: "РА" },
+            { image: "Images/big.png", word: "גָּדוֹל (Gadol) - Большой", transcription: "га-ДОЛЬ" },
+            { image: "Images/black.png", word: "שָׁחוֹר (Shachor) - Черный", transcription: "ша-ХОР" },
+            { image: "Images/blue.png", word: "כָּחוֹל (Kachol) - Синий", transcription: "ка-ХОЛЬ" },
+            { image: "Images/book.png", word: "סֵפֶר (Sefer) - Книга", transcription: "СЕ-фер" },
+            { image: "Images/bread.png", word: "לֶחֶם (Lechem) - Хлеб", transcription: "ЛЕ-хем" },
+            { image: "Images/bus.png", word: "אוֹטוֹבּוּס (Autobus) - Автобус", transcription: "ав-то-БУС" },
+            { image: "Images/car.png", word: "מְכוֹנִיָּה (Mekhoniyah) - Машина", transcription: "ме-хо-ни-Я" },
+            { image: "Images/car.png", word: "מְכוֹנִית (Mechonit) - Машина", transcription: "ме-хо-НИТ" },
+            { image: "Images/chair.png", word: "כִּסֵּא (Kise) - Стул", transcription: "ки-СЭ" },
+            { image: "Images/city.png", word: "עִיר (Ir) - Город", transcription: "ИР" },
+            { image: "Images/coffee.png", word: "קָפֶה (Cafe) - Кофе", transcription: "ка-ФЕ" },
+            { image: "Images/cold.png", word: "קַר (Kar) - Холодный", transcription: "КАР" },
+            { image: "Images/color.png", word: "צֶבַע (Tzeva) - Цвет", transcription: "ЦЕ-ва" },
+            { image: "Images/computer.png", word: "מַחְשֵׁב (Machshev) - Компьютер", transcription: "мах-ШЕВ" },
+            { image: "Images/country.png", word: "מְדִינָה (Medina) - Страна", transcription: "ме-ди-НА" },
+            { image: "Images/day.png", word: "יוֹם (Yom) - День", transcription: "ЙОМ" },
+            { image: "Images/door.png", word: "דֶּלֶת (Delet) - Дверь", transcription: "ДЕ-лет" },
+            { image: "Images/earth.png", word: "אֶרֶץ (Eretz) - Земля", transcription: "Э́-рец" },
+            { image: "Images/evening.png", word: "עֶרֶב (Erev) - Вечер", transcription: "Э́-рев" },
+            { image: "Images/fire.png", word: "אֵשׁ (Esh) - Огонь", transcription: "ЭШ" },
+            { image: "Images/food.png", word: "אוֹכֶל (Ochel) - Еда", transcription: "О́-хель" },
+            { image: "Images/good.png", word: "טוֹב (Tov) - Хороший", transcription: "ТОВ" },
+            { image: "Images/good_evening.png", word: "עֶרֶב טוֹב (Erev Tov) - Добрый вечер", transcription: "Э́-рев тов" },
+            { image: "Images/good_morning.png", word: "בֹּקֶר טוֹב (Boker Tov) - Доброе утро", transcription: "Бо́-кер тов" },
+            { image: "Images/good_night.png", word: "לַיְלָה טוֹב (Laila Tov) - Спокойной ночи", transcription: "Ла́й-ла тов" },
+            { image: "Images/green.png", word: "יָרוֹק (Yarok) - Зеленый", transcription: "я-РОК" },
+            { image: "Images/he.png", word: "הוּא (Hu) - Он", transcription: "ХУ" },
+            { image: "Images/hello.png", word: "שָׁלוֹם (Shalom) - Привет", transcription: "ша-ЛОМ" },
+            { image: "Images/here.png", word: "פֹּה (Po) - Здесь", transcription: "ПО" },
+            { image: "Images/hot.png", word: "חַם (Cham) - Жарко/Горячо", transcription: "ХАМ" },
+            { image: "Images/hotel.png", word: "מָלוֹן (Malon) - Отель", transcription: "ма-ЛОН" },
+            { image: "Images/hour.png", word: "שָׁעָה (Sha'a) - Час", transcription: "ша-А" },
+            { image: "Images/house.png", word: "בַּיִת (Bayit) - Дом", transcription: "БА-ит" },
+            { image: "Images/how.png", word: "אֵיךְ (Eich) - Как", transcription: "ЭЙХ" },
+            { image: "Images/how_are_you.png", word: "מַה נִּשְׁמַע? (Ma Nishma?) - Как дела?", transcription: "ма ниш-МА?" },
+            { image: "Images/how_much.png", word: "כַּמָּה? (Kama?) - Сколько?", transcription: "КА-ма?" },
+            { image: "Images/i.png", word: "אֲנִי (Ani) - Я", transcription: "а-НИ" },
+            { image: "Images/internet.png", word: "אִינְטֶרְנֶט (Internet) - Интернет", transcription: "ин-тер-НЕТ" },
+            { image: "Images/key.png", word: "מַפְתֵּחַ (Mafteach) - Ключ", transcription: "маф-ТЕ́-ах" },
+{ image: "Images/language.png", word: "שָׂפָה (Safa) - Язык", transcription: "са-ФА́" },
+{ image: "Images/milk.png", word: "חָלָב (Chalav) - Молоко", transcription: "ха-ЛА́в" },
+{ image: "Images/money.png", word: "כֶּסֶף (Kesef) - Деньги", transcription: "КЕ́-сеф" },
+{ image: "Images/month.png", word: "חוֹדֶשׁ (Chodesh) - Месяц", transcription: "хо́-ДЕШ" }
+
+        ];
+
+        let currentIndex = 0;
+        const wordImage = document.getElementById("wordImage");
+        const wordText = document.getElementById("wordText");
+        const transcriptionText = document.getElementById("transcriptionText");
+        const nextWordBtn = document.getElementById("nextWordBtn");
+
+        function loadWord() {
+            const currentWord = wordsData[currentIndex];
+            wordImage.src = currentWord.image;
+            wordImage.alt = currentWord.word;
+            wordText.textContent = "Tap on the image to reveal the word!";
+            transcriptionText.textContent = "";
+            wordText.style.color = "#333";
+        }
+
+        wordImage.addEventListener("click", () => {
+            wordText.textContent = wordsData[currentIndex].word;
+            transcriptionText.textContent = wordsData[currentIndex].transcription;
+            wordText.style.color = "#007BFF";
+        });
+
+        nextWordBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % wordsData.length;
+            loadWord();
+        });
+
+        loadWord();
+    </script>
+</body>
+</html>
