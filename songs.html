@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Songs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .song-list {
+            width: 90%;
+            max-width: 600px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .song-item {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .song-item:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <h1>Songs</h1>
+    <ul class="song-list" id="songList"></ul>
+
+    <script>
+        async function loadSongs() {
+            try {
+                const response = await fetch('songs.json');
+                if (!response.ok) throw new Error('Failed to fetch songs');
+                const songs = await response.json();
+
+                const songList = document.getElementById('songList');
+                songList.innerHTML = '';
+
+                songs.forEach((song, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'song-item';
+                    li.textContent = song.title;
+                    li.onclick = () => {
+                        window.location.href = `player.html?song=${index}`;
+                    };
+                    songList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error loading songs:', error);
+                alert('Failed to load songs.');
+            }
+        }
+
+        loadSongs();
+    </script>
+</body>
+</html>

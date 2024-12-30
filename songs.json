@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Song 1",
+        "file": "audio/song1.mp3",
+        "subtitles": "audio/subtitles/song1.json"
+    },
+    {
+        "title": "Song 2",
+        "file": "audio/song2.mp3",
+        "subtitles": "audio/subtitles/song2.json"
+    }
+]

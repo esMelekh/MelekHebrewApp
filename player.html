@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .player {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .controls button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .controls button:hover {
+            background: #0056b3;
+        }
+
+        .subtitle {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .subtitle div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="songTitle">Song Title</h1>
+    <div class="player">
+        <audio id="audio" controls></audio>
+        <div class="controls">
+            <button onclick="rewind()">Back</button>
+            <button id="playPauseButton" onclick="togglePlay()">Play</button>
+            <button onclick="forward()">Forward</button>
+        </div>
+        <div class="subtitle">
+            <div id="transcription">Transcription in Hebrew</div>
+            <div id="translation">Translation in Russian</div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const songIndex = urlParams.get('song');
+
+        let subtitleData = [];
+        const audio = document.getElementById('audio');
+        const transcription = document.getElementById('transcription');
+        const translation = document.getElementById('translation');
+        const playPauseButton = document.getElementById('playPauseButton');
+        const songTitle = document.getElementById('songTitle');
+
+        async function loadSong() {
+            try {
+                const response = await fetch('songs.json');
+                if (!response.ok) throw new Error('Failed to fetch songs');
+                const songs = await response.json();
+
+                const song = songs[songIndex];
+                if (!song) {
+                    alert('Song not found!');
+                    window.location.href = 'songs.html';
+                    return;
+                }
+
+                songTitle.textContent = song.title;
+                audio.src = song.file;
+
+                const subtitlesResponse = await fetch(song.subtitles);
+                if (!subtitlesResponse.ok) throw new Error('Failed to fetch subtitles');
+                subtitleData = await subtitlesResponse.json();
+
+                audio.addEventListener('timeupdate', updateSubtitles);
+            } catch (error) {
+                console.error('Error loading song:', error);
+                alert('Failed to load song.');
+            }
+        }
+
+        function updateSubtitles() {
+            const currentTime = audio.currentTime;
+            const currentSubtitle = subtitleData.find(
+                (sub) =>
+                    currentTime >= sub.time &&
+                    currentTime < (subtitleData[subtitleData.indexOf(sub) + 1]?.time || Infinity)
+            );
+
+            if (currentSubtitle) {
+                transcription.textContent = currentSubtitle.hebrew;
+                translation.textContent = currentSubtitle.translation;
+            }
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        }
+
+        function rewind() {
+            audio.currentTime -= 5;
+        }
+
+        function forward() {
+            audio.currentTime += 5;
+        }
+
+        loadSong();
+    </script>
+</body>
+</html>
