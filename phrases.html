@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phrases</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .phrase {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .phrase:hover {
+            transform: scale(1.1);
+        }
+
+        .translation {
+            font-size: 20px;
+            color: #555;
+            margin: 20px;
+            display: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .audio-button {
+            margin-top: 20px;
+        }
+
+        .audio-button button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .audio-button button:hover {
+            background-color: #1e7e34;
+        }
+
+        .back-to-menu {
+            margin-top: 40px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .back-to-menu:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phrases</h1>
+    <div class="phrase" id="phrase">Tap to see the translation!</div>
+    <div class="translation" id="translation"></div>
+
+    <div class="audio-button">
+        <button onclick="playAudio()">Play Audio</button>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevPhrase()">Previous</button>
+        <button onclick="nextPhrase()">Next</button>
+    </div>
+
+    <a href="index.html" class="back-to-menu">Back to Main Menu</a>
+
+    <script src="phrases.js"></script>
+</body>
+</html>
