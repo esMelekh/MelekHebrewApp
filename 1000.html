@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Words</title>
+    <link rel="stylesheet" href="1000.css">
+</head>
+<body>
+    <div class="word-container">
+        <!-- Большая карточка с изображением -->
+        <div class="card image-card" onclick="playAudio()">
+            <img id="wordImage" src="" alt="Word Image">
+        </div>
+
+        <!-- Три маленькие карточки -->
+        <div class="details-container">
+            <div class="card detail-card hebrew-card" onclick="flipDetail(this, 'hebrew')">
+                <div class="card-front">На Иврите</div>
+                <div class="card-back" id="hebrewText"></div>
+            </div>
+            <div class="card detail-card translit-card" onclick="flipDetail(this, 'translit')">
+                <div class="card-front">Как произносится</div>
+                <div class="card-back" id="translitText"></div>
+            </div>
+            <div class="card detail-card meaning-card" onclick="flipDetail(this, 'meaning')">
+                <div class="card-front">Перевод</div>
+                <div class="card-back" id="meaningText"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопки управления -->
+    <div class="navigation">
+        <button onclick="prevWord()">Назад</button>
+        <button onclick="nextWord()">Вперед</button>
+    </div>
+
+    <script src="1000.js"></script>
+</body>
+</html>
+
